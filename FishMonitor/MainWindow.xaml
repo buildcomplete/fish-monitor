@@ -1,0 +1,26 @@
+﻿<Window x:Class="FishMonitor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FishMonitor"
+		  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+		  mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+	<Grid>
+		<StackPanel>
+			<ComboBox 
+				ItemsSource="{Binding VideoCaptureDevices}" 
+				SelectedItem="{Binding SelectedVideoDevice}" />
+			<ComboBox
+				ItemsSource="{Binding ShowImageOptions}"
+				SelectedItem="{Binding SelectedImageOption}" />
+			<WrapPanel>
+				<TextBlock Text="Capture delay in milliseconds:" />
+				<xctk:IntegerUpDown Value="{Binding CaptureDelayMS, Mode=TwoWay}" Minimum="0" Increment="10" />
+			</WrapPanel>
+			<Image x:Name="_imageRawFrameControl" Visibility="{Binding SourceImageViewVisibility}" />
+			<Image Grid.Row="1" x:Name="_imageMotionFrameControl" Visibility="{Binding ProcessedImageViewVisibility}" />
+		</StackPanel>
+	</Grid>
+</Window>
